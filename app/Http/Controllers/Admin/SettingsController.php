@@ -12,7 +12,6 @@ use msztorc\LaravelEnv\Env;
 use Illuminate\Http\Request;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\ModuleSetting;
-use App\Models\DatabaseBackup;
 use App\Models\SeoPageContent;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -20,10 +19,7 @@ use App\Services\Admin\Seo\SeoService;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Currency\Entities\Currency;
 use Modules\Language\Entities\Language;
-use App\Services\Admin\Seo\AdminSeoService;
 use Modules\SetupGuide\Entities\SetupGuide;
-use Modules\Currency\Http\Controllers\CurrencyController;
-use Modules\Language\Http\Controllers\TranslationController;
 use Spatie\Sitemap\Sitemap;
 
 class SettingsController extends Controller
@@ -403,21 +399,23 @@ class SettingsController extends Controller
      */
     public function generateSitemap()
     {
-        $sitemap = Sitemap::create()
-            ->add(Url::create('/'))
-            ->add(Url::create('/ad-list'))
-            ->add(Url::create('/blog'))
-            ->add(Url::create('/price-plan'))
-            ->add(Url::create('/about'))
-            ->add(Url::create('/contact'))
-            ->add(Url::create('/login'))
-            ->add(Url::create('/sign-up'))
-            ->add(Url::create('/faq'))
-            ->add(Url::create('/terms-conditions'))
-            ->add(Url::create('/privacy'));
-        $sitemap->writeToFile(public_path('sitemap.xml'));
+        flashSuccess('Not available with this version');
+        return redirect()->back();
+        // $sitemap = Sitemap::create()
+        //     ->add(Url::create('/'))
+        //     ->add(Url::create('/ad-list'))
+        //     ->add(Url::create('/blog'))
+        //     ->add(Url::create('/price-plan'))
+        //     ->add(Url::create('/about'))
+        //     ->add(Url::create('/contact'))
+        //     ->add(Url::create('/login'))
+        //     ->add(Url::create('/sign-up'))
+        //     ->add(Url::create('/faq'))
+        //     ->add(Url::create('/terms-conditions'))
+        //     ->add(Url::create('/privacy'));
+        // $sitemap->writeToFile(public_path('sitemap.xml'));
 
-        flashSuccess('Sitemap successfully created !');
+        // flashSuccess('Sitemap successfully created !');
     }
 
     /**
